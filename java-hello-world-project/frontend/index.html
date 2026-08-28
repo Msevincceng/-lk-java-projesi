@@ -6,21 +6,59 @@
     <title>Hello World</title>
     <style>
       * { box-sizing: border-box; }
-      body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: Arial, sans-serif; background: #f4f7fb; color: #1d2939; }
-      main { text-align: center; padding: 3rem; background: white; border-radius: 16px; box-shadow: 0 12px 32px #1018281a; }
-      h1 { margin: 0; font-size: clamp(2rem, 8vw, 4rem); }
-      p { color: #667085; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #1d2939;
+      }
+      main {
+        text-align: center;
+        padding: 3rem;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 12px 32px #1018281a;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 8vw, 4rem);
+      }
+      p {
+        color: #667085;
+      }
     </style>
   </head>
+
   <body>
     <main>
       <h1 id="message">Yükleniyor...</h1>
-<p>Bu metin feature/welcome-text branch'inde değiştirildi.</p>    </main>
+      <p>Bu metin feature/welcome-text branch'inde değiştirildi.</p>
+      <p id="health-status">Backend durumu kontrol ediliyor...</p>
+    </main>
+
     <script>
       fetch('http://localhost:8080/api/hello')
         .then(response => response.json())
-        .then(data => document.getElementById('message').textContent = data.message)
-        .catch(() => document.getElementById('message').textContent = 'Backend çalışmıyor');
+        .then(data => {
+          document.getElementById('message').textContent = data.message;
+        })
+        .catch(() => {
+          document.getElementById('message').textContent = 'Backend çalışmıyor';
+        });
+
+      fetch('http://localhost:8080/api/health')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('health-status').textContent =
+            'Backend durumu: ' + data.status;
+        })
+        .catch(() => {
+          document.getElementById('health-status').textContent =
+            'Backend durumu: Bağlantı kurulamadı';
+        });
     </script>
   </body>
 </html>
