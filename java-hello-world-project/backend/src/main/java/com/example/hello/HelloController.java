@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class HelloController {
+
     @GetMapping("/hello")
     public Map<String, String> hello() {
         return Map.of("message", "Hello World!");
+    }
+
+    @GetMapping("/health")
+    public Map<String, String> health() {
+        return Map.of("status", "UP");
     }
 }
