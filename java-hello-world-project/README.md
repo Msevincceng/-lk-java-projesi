@@ -21,3 +21,14 @@ Kontrol için: `http://localhost:8080/api/hello`
 ## Frontend'i açın
 
 `frontend/index.html` dosyasını tarayıcıda açın. Sayfa backend'e istek atar ve **Hello World!** mesajını gösterir.
+## API Endpointleri
+
+Backend çalışırken aşağıdaki adresler kullanılabilir:
+
+- `GET /api/hello` — Hello World mesajını döndürür.
+- `GET /api/health` — Uygulamanın çalıştığını kontrol eder.
+
+Örnek:
+
+```text
+http://localhost:8080/api/health
